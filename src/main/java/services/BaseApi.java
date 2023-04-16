@@ -1,6 +1,5 @@
 package services;
 
-import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
@@ -8,20 +7,11 @@ import static io.restassured.RestAssured.given;
 
 public class BaseApi {
 
-    private static final String BASE_URL = "https://petstore.swagger.io/v2";
-    private static final String BASE_PATH = "/store";
+    public static final String BASE_URL = "https://petstore.swagger.io/v2";
 
-    protected RequestSpecification spec;
 
-    public BaseApi() {
-        this.spec = given()
-                .baseUri(BASE_URL)
-                .basePath(BASE_PATH)
-                .contentType(ContentType.JSON);
-    }
-
-    public ValidatableResponse post(Object body, String path) {
-        return given(this.spec)
+    public ValidatableResponse post(RequestSpecification spec, Object body, String path) {
+        return given(spec)
                 .log().all()
                 .body(body)
                 .when()
@@ -30,8 +20,8 @@ public class BaseApi {
                 .log().all();
     }
 
-    public ValidatableResponse postError(String path) {
-        return given(this.spec)
+    public ValidatableResponse postError(RequestSpecification spec, String path) {
+        return given(spec)
                 .log().all()
                 .when()
                 .post(path)
@@ -39,10 +29,8 @@ public class BaseApi {
                 .log().all();
     }
 
-
-
-    public ValidatableResponse getRequest(String path) {
-        return given(this.spec)
+    public ValidatableResponse getRequest(RequestSpecification spec, String path) {
+        return given(spec)
                 .log().all()
                 .when()
                 .get(path)
