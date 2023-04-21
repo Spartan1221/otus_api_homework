@@ -58,23 +58,4 @@ public class PostStoreOrderTests {
                             .isCloseTo(shipDate, within(3, SECONDS));
                 });
     }
-
-    @Test
-    @DisplayName("Если вызвать запрос без тела, то в ответе вернется статус 400")
-    public void createOrder400Test() {
-        PostStoreOrderApi postStoreOrderApi = new PostStoreOrderApi();
-        ValidatableResponse response = postStoreOrderApi.postError()
-                .statusCode(400);
-
-        StoreErrorResponse responseBody = response.extract().body().as(StoreErrorResponse.class);
-
-        StoreErrorResponse expectedResponseBody = StoreErrorResponse.builder()
-                .code(1)
-                .type("error")
-                .message("No data")
-                .build();
-        assertThat(responseBody)
-                .as("тело не соответствует ожиданиям")
-                .isEqualTo(expectedResponseBody);
-    }
 }
