@@ -1,12 +1,13 @@
 package store.post;
 
-import dto.StoreErrorResponse;
 import dto.StoreRequest;
 import dto.StoreResponse;
 import io.restassured.response.ValidatableResponse;
 import org.assertj.core.api.recursive.comparison.RecursiveComparisonConfiguration;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import services.DeleteStoreOrderApi;
 import services.PostStoreOrderApi;
 
 import java.time.LocalDateTime;
@@ -17,13 +18,21 @@ import static org.assertj.core.api.Assertions.within;
 
 public class PostStoreOrderTests {
 
+    private static final Integer ID = 1;
+
+    @AfterAll
+    public static void afterAll() {
+        DeleteStoreOrderApi deleteStoreOrderApi = new DeleteStoreOrderApi();
+        deleteStoreOrderApi.delete(ID.toString());
+    }
+
     @Test
     @DisplayName("Если вызвать запрос с заполненным телом, то в ответе вернется статус 200 и корректное тело ")
     public void createOrderSuccessTest() {
         PostStoreOrderApi postStoreOrderApi = new PostStoreOrderApi();
         String shipDate = LocalDateTime.now().plusDays(10).toString();
         StoreRequest storeRequest = StoreRequest.builder()
-                .id(1)
+                .id(ID)
                 .petId(1)
                 .quantity(1)
                 .shipDate(shipDate)
@@ -36,7 +45,7 @@ public class PostStoreOrderTests {
         StoreResponse responseBody = response.extract().body().as(StoreResponse.class);
 
         StoreResponse expectedBody = StoreResponse.builder()
-                .id(1)
+                .id(ID)
                 .petId(1)
                 .quantity(1)
                 .shipDate(shipDate)

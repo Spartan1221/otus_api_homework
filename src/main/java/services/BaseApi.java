@@ -5,9 +5,9 @@ import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
 
-public class BaseApi {
+public abstract class BaseApi {
 
-    public static final String BASE_URL = "https://petstore.swagger.io/v2";
+    public static final String BASE_URL = System.getProperty("baseUrl", "https://petstore.swagger.io/v2");
 
 
     public ValidatableResponse post(RequestSpecification spec, Object body, String path) {
@@ -16,6 +16,14 @@ public class BaseApi {
                 .body(body)
                 .when()
                 .post(path)
+                .then()
+                .log().all();
+    }
+    public ValidatableResponse delete(RequestSpecification spec, String path) {
+        return given(spec)
+                .log().all()
+                .when()
+                .delete(path)
                 .then()
                 .log().all();
     }

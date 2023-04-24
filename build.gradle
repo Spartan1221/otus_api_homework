@@ -25,7 +25,7 @@ ext {
   restVersion = "5.3.0"
   jacksonVersion = "2.10.5"
   browser = 'chrome'
-  baseUrl = 'https://otus.ru'
+  baseUrl = 'https://petstore.swagger.io/v2'
 }
 
 sourceCompatibility = '11'
