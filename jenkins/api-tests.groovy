@@ -12,9 +12,8 @@ timeout(180) {
       }
       stage('Run tests') {
         tests_exit_code = sh(
-            script: "mvn test -Dbrowser=$BROWSER_NAME -Dbrowser.version=$BROWSER_VERSION",
+            script: "gradle test -DbaseUrl=$BASE_URL",
         )
-
         if (tests_exit_code != 0) {
           currentBuild.status = 'UNSTABLE'
         }
@@ -22,7 +21,7 @@ timeout(180) {
       stage('Publish artifacts') {
         allure([
             results          : [{
-                                  path: 'target/allure-results'
+               path: 'target/allure-results'
                                 }],
             disabled         : false,
             reportBuildPolicy: ALWAYS
