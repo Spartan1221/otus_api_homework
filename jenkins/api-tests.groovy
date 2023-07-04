@@ -27,25 +27,25 @@ timeout(180) {
             results: [[path: 'target/allure-results']]
         ])
       }
-      stage('Publish notification in telegram') {
-        lines = readFile 'target/allure-results/export/influxDbData.txt'
-        def message = "============= UI REORT ============"
-        for (line in lines) {
-          def matcher = line =~ /.*(\w+=\d+).*/
-          message += line
-        }
-
-        def connection = null
-
-        connection = new URL(stringBuilder.toString()).openConnection() as HttpURLConnection
-        withCredentials([sring(name: 'telegram_token', envVar: TELEGRAM_TOKEN)]) {
-          connection.setProperty("token", $TELEGRAM_TOKEN)
-          connection.setProperty("text", message)
-          connection.setProperty('chat_id': '-1111111')
-        }
-        connection.setRequestMethod('POST')
-        connection.setDoOutput(true)
-      }
+//      stage('Publish notification in telegram') {
+//        lines = readFile 'target/allure-results/export/influxDbData.txt'
+//        def message = "============= UI REORT ============"
+//        for (line in lines) {
+//          def matcher = line =~ /.*(\w+=\d+).*/
+//          message += line
+//        }
+//
+//        def connection = null
+//
+//        connection = new URL(stringBuilder.toString()).openConnection() as HttpURLConnection
+//        withCredentials([sring(name: 'telegram_token', envVar: TELEGRAM_TOKEN)]) {
+//          connection.setProperty("token", $TELEGRAM_TOKEN)
+//          connection.setProperty("text", message)
+//          connection.setProperty('chat_id': '-1111111')
+//        }
+//        connection.setRequestMethod('POST')
+//        connection.setDoOutput(true)
+//      }
     }
   }
 }
