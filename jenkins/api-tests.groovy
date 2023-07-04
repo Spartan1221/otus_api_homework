@@ -24,7 +24,7 @@ timeout(180) {
                path: 'target/allure-results'
                                 }],
             disabled         : false,
-            reportBuildPolicy: ALWAYS
+            reportBuildPolicy: 'ALWAYS'
         ])
       }
       stage('Publish notification in telegram') {
