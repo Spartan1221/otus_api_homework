@@ -13,6 +13,7 @@ repositories {
 }
 
 ext {
+  aspectVersion = "1.9.5"
   allureVersion = '2.16.1'
   junitVersion = '5.8.1'
   seleniumVersion = '3.141.59'
@@ -45,6 +46,11 @@ dependencies {
 
   implementation "org.projectlombok:lombok:${lombokVersion}"
   testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+  implementation ("io.qameta.allure:allure-junit5:${allureVersion}")
+  implementation ("io.qameta.allure:allure-assertj:${allureVersion}")
+  implementation "org.aspectj:aspectjrt:${aspectVersion}"
+  implementation "org.aspectj:aspectjweaver:${aspectVersion}"
 
   implementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   implementation("org.junit.jupiter:junit-jupiter:${junitVersion}")

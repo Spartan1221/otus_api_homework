@@ -15,7 +15,7 @@ timeout(180) {
             script: "gradle test -DbaseUrl=$BASE_URL",
         )
         if (tests_exit_code != 0) {
-          currentBuild.status = 'UNSTABLE'
+          currentBuild.result = 'UNSTABLE'
         }
       }
       stage('Publish artifacts') {
