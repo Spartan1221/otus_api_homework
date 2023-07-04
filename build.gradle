@@ -64,7 +64,7 @@ dependencies {
       "org.projectlombok:lombok-mapstruct-binding:0.2.0"
 }
 
-allure {
+/*allure {
   autoconfigure = true
   aspectjweaver = true
   version = "${allureVersion}"
@@ -75,7 +75,7 @@ allure {
 
   resultsDir = file('allure-results')
   reportDir = file('allure-reports')
-}
+}*/
 
 test {
   useJUnitPlatform()
