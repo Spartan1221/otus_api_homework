@@ -78,7 +78,7 @@ checkstyleTest {
   source ='src/test/java'
 }
 
-/*spotbugs {
+spotbugs {
   ignoreFailures = false
   showStackTraces = true
   showProgress = true
@@ -92,5 +92,5 @@ spotbugsMain {
       stylesheet = 'fancy-hist.xsl'
     }
   }
-}*/
+}
 
