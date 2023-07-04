@@ -1,5 +1,5 @@
 timeout(180) {
-  node('maven') {
+  node('gradle') {
     timestamp {
       wrap([$class: 'BuildUser']) {
         summary = """|<b>Owner:</b> ${env.BUILD_USER}
@@ -27,10 +27,10 @@ timeout(180) {
       }
       stage('Publish artifacts') {
         allure([
-            results          : [{
-                                  path: 'target/allure-results'
+            results: [{
+                path: 'target/allure-results'
                                 }],
-            disabled         : false,
+            disabled: false,
             reportBuildPolicy: ALWAYS
         ])
       }
