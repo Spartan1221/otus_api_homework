@@ -20,11 +20,11 @@ timeout(180) {
       }
       stage('Publish artifacts') {
         allure([
-            results          : [{
-               path: 'target/allure-results'
-                                }],
-            disabled         : false,
-            reportBuildPolicy: 'ALWAYS'
+            includeProperties: false,
+            jdk: '',
+            properties: [],
+            reportBuildPolicy: 'ALWAYS',
+            results: [[path: 'target/allure-results']]
         ])
       }
       stage('Publish notification in telegram') {
