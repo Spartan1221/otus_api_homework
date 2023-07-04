@@ -18,7 +18,7 @@ timeout(180) {
       }
       stage('Run tests') {
         tests_exit_code = sh(
-            script: "gradle test -DbaseUrl=$BASE_URL",
+            script: "mvn test -Dbrowser=$BROWSER_NAME -Dbrowser.version=$BROWSER_VERSION",
         )
 
         if (tests_exit_code != 0) {
@@ -27,10 +27,10 @@ timeout(180) {
       }
       stage('Publish artifacts') {
         allure([
-            results: [{
-                path: 'target/allure-results'
+            results          : [{
+                                  path: 'target/allure-results'
                                 }],
-            disabled: false,
+            disabled         : false,
             reportBuildPolicy: ALWAYS
         ])
       }
@@ -50,7 +50,6 @@ timeout(180) {
           connection.setProperty("text", message)
           connection.setProperty('chat_id': '-1111111')
         }
-
         connection.setRequestMethod('POST')
         connection.setDoOutput(true)
       }
