@@ -7,12 +7,6 @@ timeout(180) {
         currentBuild.description = summary.replaceAll("\n", "<br>")
         owner_user_id = "${env.BUILD_USER_ID}"
       }
-      yaml_object = readYaml $YAML_CONFIG
-      for (key in params.keySet()) {
-        {
-          System.setProperty(key, params[key])
-        }
-      }
       stage('Checkout') {
         checkout scv
       }
