@@ -8,7 +8,7 @@ timeout(180) {
         owner_user_id = "${env.BUILD_USER_ID}"
       }
       stage('Checkout') {
-        checkout scv
+        checkout scm
       }
       stage('Run tests') {
         tests_exit_code = sh(
