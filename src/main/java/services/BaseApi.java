@@ -1,5 +1,6 @@
 package services;
 
+import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
@@ -10,6 +11,7 @@ public abstract class BaseApi {
     public static final String BASE_URL = System.getProperty("baseUrl", "https://petstore.swagger.io/v2");
 
 
+    @Step("Вызов сервиса")
     public ValidatableResponse post(RequestSpecification spec, Object body, String path) {
         return given(spec)
                 .log().all()
@@ -19,6 +21,8 @@ public abstract class BaseApi {
                 .then()
                 .log().all();
     }
+
+    @Step("Вызов сервиса")
     public ValidatableResponse delete(RequestSpecification spec, String path) {
         return given(spec)
                 .log().all()
@@ -28,6 +32,7 @@ public abstract class BaseApi {
                 .log().all();
     }
 
+    @Step("Вызов сервиса")
     public ValidatableResponse postError(RequestSpecification spec, String path) {
         return given(spec)
                 .log().all()
@@ -37,6 +42,7 @@ public abstract class BaseApi {
                 .log().all();
     }
 
+    @Step("Вызов сервиса")
     public ValidatableResponse getRequest(RequestSpecification spec, String path) {
         return given(spec)
                 .log().all()
