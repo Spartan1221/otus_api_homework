@@ -13,12 +13,12 @@ repositories {
 }
 
 ext {
-  aspectVersion = "1.9.5"
-  allureVersion = '2.16.1'
+  aspectVersion = "1.8.10"
+  allureVersion = '2.13.8'
   junitVersion = '5.8.1'
   seleniumVersion = '3.141.59'
   webdrivermanagerVersion = '4.2.0'
-  assertjVersion = '3.21.0'
+  assertjVersion = '3.19.0'
   cucumberVersion = '5.5.0'
   guiceVersion = '5.1.0'
   jsoupVersion = '1.15.4'
@@ -49,6 +49,7 @@ dependencies {
 
   implementation ("io.qameta.allure:allure-junit5:${allureVersion}")
   implementation ("io.qameta.allure:allure-assertj:${allureVersion}")
+  implementation ("io.qameta.allure:allure-rest-assured:${allureVersion}")
   implementation "org.aspectj:aspectjrt:${aspectVersion}"
   implementation "org.aspectj:aspectjweaver:${aspectVersion}"
 
@@ -64,18 +65,6 @@ dependencies {
       "org.projectlombok:lombok-mapstruct-binding:0.2.0"
 }
 
-/*allure {
-  autoconfigure = true
-  aspectjweaver = true
-  version = "${allureVersion}"
-
-  useJUnit5 {
-    version = "${allureVersion}"
-  }
-
-  resultsDir = file('allure-results')
-  reportDir = file('allure-reports')
-}*/
 
 test {
   useJUnitPlatform()
